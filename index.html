@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhavin Panchal - Cybersecurity Engineer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #e0e0e0;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 15, 35, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            border-bottom: 1px solid rgba(0, 255, 157, 0.3);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #00ff9d;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #00ff9d;
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Header */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="%23ffffff" stroke-width="0.3" opacity="0.1"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #00ff9d, #00d4ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 20px rgba(0, 255, 157, 0.3); }
+            to { text-shadow: 0 0 30px rgba(0, 255, 157, 0.5); }
+        }
+
+        .hero h2 {
+            font-size: 1.5rem;
+            color: #b0b0b0;
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #00ff9d;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-2px);
+            color: #00d4ff;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #00ff9d, #00d4ff);
+            color: #0f0f23;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 0 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 255, 157, 0.3);
+        }
+
+        /* Sections */
+        section {
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            color: #00ff9d;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(135deg, #00ff9d, #00d4ff);
+            border-radius: 2px;
+        }
+
+        /* Skills Grid */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 255, 157, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.1);
+        }
+
+        .skill-category h3 {
+            color: #00ff9d;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-tag {
+            background: rgba(0, 255, 157, 0.1);
+            color: #00ff9d;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(0, 255, 157, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .skill-tag:hover {
+            background: rgba(0, 255, 157, 0.2);
+            transform: scale(1.05);
+        }
+
+        /* Experience Cards */
+        .experience-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .experience-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            border-left: 4px solid #00ff9d;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 157, 0.1);
+        }
+
+        .experience-header {
+            margin-bottom: 1rem;
+        }
+
+        .experience-title {
+            font-size: 1.4rem;
+            color: #00ff9d;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-meta {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description ul {
+            margin-left: 1rem;
+        }
+
+        .experience-description li {
+            margin-bottom: 0.5rem;
+            color: #d0d0d0;
+        }
+
+        /* Education */
+        .education-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: 1px solid rgba(0, 255, 157, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .education-title {
+            color: #00ff9d;
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-school {
+            color: #00d4ff;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-meta {
+            color: #b0b0b0;
+            margin-bottom: 1rem;
+        }
+
+        /* Certifications */
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .cert-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1.5rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .cert-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(0, 212, 255, 0.6);
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.1);
+        }
+
+        .cert-title {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: rgba(15, 15, 35, 0.9);
+            padding: 2rem 0;
+            text-align: center;
+            border-top: 1px solid rgba(0, 255, 157, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Loading animation */
+        .loading {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.6s ease;
+        }
+
+        .loading.loaded {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content loading">
+                <h1>Bhavin Panchal</h1>
+                <h2>Cybersecurity Engineer</h2>
+                <div class="contact-info">
+                    <a href="tel:2404241992" class="contact-item">
+                        📞 2404241992
+                    </a>
+                    <a href="mailto:bhavinkp05@gmail.com" class="contact-item">
+                        📧 bhavinkp05@gmail.com
+                    </a>
+                    <a href="https://www.linkedin.com/in/bhavinkpanchal/" target="_blank" class="contact-item">
+                        🔗 LinkedIn
+                    </a>
+                    <a href="https://github.com/bhavin2205" target="_blank" class="contact-item">
+                        🔗 GitHub
+                    </a>
+                </div>
+                <div>
+                    <a href="#experience" class="btn">View My Work</a>
+                    <a href="mailto:bhavinkp05@gmail.com" class="btn">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title loading">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category loading">
+                    <h3>🖥️ Systems & Platforms</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Linux (Ubuntu, Kali)</span>
+                        <span class="skill-tag">Windows Server</span>
+                    </div>
+                </div>
+
+                <div class="skill-category loading">
+                    <h3>🔒 Security Automation</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Python</span>
+                        <span class="skill-tag">Bash</span>
+                        <span class="skill-tag">PHP</span>
+                        <span class="skill-tag">Java</span>
+                        <span class="skill-tag">C</span>
+                    </div>
+                </div>
+
+                <div class="skill-category loading">
+                    <h3>🔍 Threat Detection</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">SIEM</span>
+                        <span class="skill-tag">IDS/IPS (Suricata)</span>
+                        <span class="skill-tag">EDR</span>
+                        <span class="skill-tag">ELK Stack</span>
+                        <span class="skill-tag">IOC Mapping</span>
+                    </div>
+                </div>
+
+                <div class="skill-category loading">
+                    <h3>🛠️ Penetration Testing</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Wireshark</span>
+                        <span class="skill-tag">Nmap</span>
+                        <span class="skill-tag">Burp Suite</span>
+                        <span class="skill-tag">Metasploit</span>
+                        <span class="skill-tag">JohnTheRipper</span>
+                        <span class="skill-tag">Hashcat</span>
+                        <span class="skill-tag">Netcat</span>
+                        <span class="skill-tag">Autopsy</span>
+                    </div>
+                </div>
+
+                <div class="skill-category loading">
+                    <h3>☁️ Cloud Security (AWS)</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">IAM</span>
+                        <span class="skill-tag">S3</span>
+                        <span class="skill-tag">EC2</span>
+                        <span class="skill-tag">CloudTrail</span>
+                        <span class="skill-tag">Security Groups</span>
+                        <span class="skill-tag">EKS</span>
+                        <span class="skill-tag">DynamoDB</span>
+                        <span class="skill-tag">CloudFormation</span>
+                    </div>
+                </div>
+
+                <div class="skill-category loading">
+                    <h3>🔧 DevSecOps & IaC</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">GitHub Actions</span>
+                        <span class="skill-tag">Terraform</span>
+                        <span class="skill-tag">CI/CD Pipelines</span>
+                        <span class="skill-tag">Docker</span>
+                        <span class="skill-tag">Kubernetes</span>
+                    </div>
+                </div>
+
+                <div class="skill-category loading">
+                    <h3>📚 Frameworks & Standards</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MITRE ATT&CK</span>
+                        <span class="skill-tag">OWASP Top 10</span>
+                        <span class="skill-tag">NIST CSF</span>
+                        <span class="skill-tag">CIS Controls</span>
+                        <span class="skill-tag">CMMC 2.0</span>
+                        <span class="skill-tag">HIPAA</span>
+                    </div>
+                </div>
+
+                <div class="skill-category loading">
+                    <h3>🎯 Vulnerability Management</h3>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Nessus</span>
+                        <span class="skill-tag">Static Code Analysis</span>
+                        <span class="skill-tag">Dynamic Code Analysis</span>
+                        <span class="skill-tag">CVE Analysis</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <h2 class="section-title loading">Professional Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card loading">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Cloud Village Volunteer - Cloud CTF Challenge Developer</h3>
+                        <div class="experience-meta">Remote | Feb 2025 - April 2025</div>
+                    </div>
+                    <div class="experience-description">
+                        <h4 style="color: #00d4ff; margin-bottom: 1rem;">LeakySystemsINC Challenge</h4>
+                        <ul>
+                            <li>Developed an intermediate-level AWS CTF challenge simulating a real-world Server-Side Request Forgery (SSRF) vulnerability, resulting in Instance Metadata Service (IMDSv1) exploitation</li>
+                            <li>Engineered scenarios for players to bypass AWS IAM restrictions and exploit direct object access via AWS CLI</li>
+                            <li>Integrated GitHub Actions and OpenID Connect (OIDC) to simulate GitHub Actions abuse scenarios</li>
+                            <li>Automated cloud infrastructure provisioning using Terraform for scalable CTF deployments</li>
+                        </ul>
+                        
+                        <h4 style="color: #00d4ff; margin: 1.5rem 0 1rem;">The Dragon's Akashic Records Challenge</h4>
+                        <ul>
+                            <li>Designed and deployed an "Easy" difficulty CTF challenge with a vulnerable ELK stack exposing AWS CloudTrail logs</li>
+                            <li>Guided participants through targeted log analysis within Kibana to extract hidden AWS IAM credentials</li>
+                            <li>Used Python to generate and upload simulated AWS logs with embedded credentials</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-card loading">
+                    <div class="experience-header">
+                        <h3 class="experience-title">Security & Community Contributions - PurpleBox Project</h3>
+                        <div class="experience-meta">Open-Source Personal Project | April 2025 - Present</div>
+                    </div>
+                    <div class="experience-description">
+                        <ul>
+                            <li>Developed a MITRE ATT&CK-based attack simulation and detection toolkit with modular framework</li>
+                            <li>Implemented detection logic for PowerShell execution (T1059.001) by parsing Windows Event ID 4104 logs</li>
+                            <li>Enhanced detection accuracy by integrating PowerShell Script Block Logging</li>
+                            <li>Developed custom Python tools for log analysis and alert summarization</li>
+                            <li>Created user-friendly CLI interface for technique simulation and detection</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="experience-card loading">
+                    <div class="experience-header">
+                        <h3 class="experience-title">University Projects - Cybersecurity Portfolio</h3>
+                        <div class="experience-meta">University of Maryland | Aug 2023 - May 2025</div>
+                    </div>
+                    <div class="experience-description">
+                        <h4 style="color: #00d4ff; margin-bottom: 1rem;">Key Projects:</h4>
+                        <ul>
+                            <li><strong>Cloud Security & HIPAA Compliance:</strong> Conducted comprehensive security assessments on healthcare cloud architecture, ensuring HIPAA compliance and enhanced system security</li>
+                            <li><strong>Containerized Application (AWS EKS):</strong> Developed scalable Doctor's Office Appointment application using EKS, Kubernetes, Docker, and React</li>
+                            <li><strong>Custom Suricata Rules:</strong> Developed IDS rules to detect malware families and attack patterns, improving network threat detection accuracy</li>
+                            <li><strong>Digital Forensics & Incident Response:</strong> Conducted comprehensive forensic analysis using Autopsy, VeraCrypt, and Wireshark</li>
+                            <li><strong>Penetration Testing:</strong> Performed thorough security evaluations on Linux and Windows systems, achieving full network infiltration</li>
+                            <li><strong>CMMC Policy Assessment:</strong> Audited security posture against DoD CMMC 2.0 Level 1 requirements</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education">
+        <div class="container">
+            <h2 class="section-title loading">Education</h2>
+            
+            <div class="education-card loading">
+                <h3 class="education-title">Master of Engineering in Cybersecurity</h3>
+                <div class="education-school">University of Maryland, College Park, MD, USA</div>
+                <div class="education-meta">Expected May 2025</div>
+                <p><strong>Relevant Coursework:</strong> Penetration Testing, Cloud Security, Network Security, Binary Exploitation, Advanced Hacking in Linux</p>
+            </div>
+
+            <div class="education-card loading">
+                <h3 class="education-title">Bachelor of Engineering in Information Technology</h3>
+                <div class="education-school">Gujarat Technological University, Gandhinagar, GJ, India</div>
+                <div class="education-meta">May 2021</div>
+                <p><strong>Relevant Coursework:</strong> Data Structures & Algorithms, Networking, Programming in C and Python, Distributed Databases</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="certifications">
+        <div class="container">
+            <h2 class="section-title loading">Certifications</h2>
+            <div class="cert-grid">
+                <div class="cert-card loading">
+                    <h3 class="cert-title">CompTIA Security+</h3>
+                    <p>LinkedIn | Issued Feb 2025</p>
+                </div>
+                
+                <div class="cert-card loading">
+                    <h3 class="cert-title">Become an Ethical Hacker</h3>
+                    <p>LinkedIn | Issued Apr 2025</p>
+                </div>
+                
+                <div class="cert-card loading">
+                    <h3 class="cert-title">Digital Forensics Essential</h3>
+                    <p>EC-Council | Issued Aug 2023</p>
+                </div>
+                
+                <div class="cert-card loading">
+                    <h3 class="cert-title">Certified Information Security and Ethical Hacker</h3>
+                    <p>Pristine InfoSolutions Pvt. Ltd. | Issued May 2022</p>
+                </div>
+                
+                <div class="cert-card loading">
+                    <h3 class="cert-title">Ethical Hacking Essential</h3>
+                    <p>EC-Council</p>
+                </div>
+            </div>
+            
+            <div style="margin-top: 3rem; text-align: center;" class="loading">
+                <h3 style="color: #00ff9d; margin-bottom: 1rem;">Continuous Learning</h3>
+                <p style="color: #d0d0d0;">Actively participates in cybersecurity learning platforms including <strong>TryHackMe</strong> and <strong>HackTheBox</strong></p>
+                <p style="color: #d0d0d0;">Engages in competitive Capture The Flag (CTF) events on platforms like <strong>Intigriti</strong> and <strong>Huntress</strong></p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 2rem;">Let's Connect</h2>
+            <div class="contact-info" style="margin-bottom: 2rem;">
+                <a href="tel:2404241992" class="contact-item">📞 2404241992</a>
+                <a href="mailto:bhavinkp05@gmail.com" class="contact-item">📧 bhavinkp05@gmail.com</a>
+                <a href="https://www.linkedin.com/in/bhavinkpanchal/" target="_blank" class="contact-item">🔗 LinkedIn</a>
+                <a href="https://github.com/bhavin2205" target="_blank" class="contact-item">🔗 GitHub</a>
+            </div>
+            <p style="color: #b0b0b0;">&copy; 2025 Bhavin Panchal. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Loading animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('loaded');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with loading class
+        document.querySelectorAll('.loading').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add active nav link highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Typing effect for hero title
+        const heroTitle = document.querySelector('.hero h1');
+        const titleText = heroTitle.textContent;
+        heroTitle.textContent = '';
+        
+        let i = 0;
+        const typeWriter = () => {
+            if (i < titleText.length) {
+                heroTitle.textContent += titleText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 100);
+            }
+        };
+        
+        setTimeout(typeWriter, 1000);
+    </script>
+</body>
+</html>
